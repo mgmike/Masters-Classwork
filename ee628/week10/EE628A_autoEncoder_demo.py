@@ -69,6 +69,9 @@ for i in range(n):
 plt.show()
 
 
+plt.imshow(x_test[0])
+plt.imshow(decoded_imgs[0])
+
 
 
 
