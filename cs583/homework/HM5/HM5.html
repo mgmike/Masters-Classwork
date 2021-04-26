@@ -10,9 +10,9 @@
 
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14329,7 +14329,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>2.4.1
+<pre>2.5.0-dev20210130
 </pre>
 </div>
 </div>
@@ -14630,8 +14630,8 @@ max length of target sentences: 73
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">keras.preprocessing.text</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
-<span class="kn">from</span> <span class="nn">keras.preprocessing.sequence</span> <span class="kn">import</span> <span class="n">pad_sequences</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.text</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.sequence</span> <span class="kn">import</span> <span class="n">pad_sequences</span>
 
 <span class="c1"># encode and pad sequences</span>
 <span class="k">class</span> <span class="nc">Text2sequences</span><span class="p">:</span>
@@ -14668,18 +14668,6 @@ max length of target sentences: 73
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>Using TensorFlow backend.
-</pre>
-</div>
-</div>
 
 <div class="jp-OutputArea-child">
 
@@ -14850,7 +14838,7 @@ num_decoder_tokens: 30
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">keras.utils</span> <span class="kn">import</span> <span class="n">to_categorical</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">to_categorical</span>
 
 <span class="c1"># one hot encode target sequence</span>
 <span class="k">def</span> <span class="nf">onehot_encode</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">max_len</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">):</span>
@@ -14930,10 +14918,10 @@ num_decoder_tokens: 30
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Bidirectional</span><span class="p">,</span> <span class="n">Concatenate</span><span class="p">,</span> <span class="n">LSTM</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Bidirectional</span><span class="p">,</span> <span class="n">Concatenate</span><span class="p">,</span> <span class="n">LSTM</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
 
 <span class="k">class</span> <span class="nc">EncoderDecoderModel</span><span class="p">():</span>
@@ -15009,12 +14997,12 @@ num_decoder_tokens: 30
             
         <span class="bp">self</span><span class="o">.</span><span class="n">num_decoder_tokens</span> <span class="o">=</span> <span class="n">num_decoder_tokens</span>
         <span class="c1"># inputs of the decoder network</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_input_h</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latent_dim</span><span class="p">,))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_input_c</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latent_dim</span><span class="p">,))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_input_h</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latent_dim</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_input_c</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latent_dim</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">decoder_input_x</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_decoder_tokens</span><span class="p">))</span>
 
         <span class="c1"># set the LSTM layer</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_lstm</span> <span class="o">=</span> <span class="n">LSTM</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latent_dim</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_lstm</span> <span class="o">=</span> <span class="n">LSTM</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latent_dim</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
                             <span class="n">return_state</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">decoder_lstm_outputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder_lstm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decoder_input_x</span><span class="p">,</span> 
                                                               <span class="n">initial_state</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">decoder_input_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder_input_c</span><span class="p">])</span>
@@ -15188,14 +15176,14 @@ shape of decoder_target_data(43977, 73, 30)
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">SVG</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">model_to_dot</span><span class="p">,</span> <span class="n">plot_model</span>
 
 <span class="n">encoder_decoder_object</span> <span class="o">=</span> <span class="n">EncoderDecoderModel</span><span class="p">()</span>
-<span class="n">encoder_model</span> <span class="o">=</span> <span class="n">encoder_decoder_object</span><span class="o">.</span><span class="n">build_encoder</span><span class="p">(</span><span class="n">num_encoder_tokens</span><span class="p">)</span>
+<span class="n">encoder_model</span> <span class="o">=</span> <span class="n">encoder_decoder_object</span><span class="o">.</span><span class="n">build_encoder</span><span class="p">(</span><span class="n">num_encoder_tokens</span><span class="p">,</span> <span class="n">bilstm</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">SVG</span><span class="p">(</span><span class="n">model_to_dot</span><span class="p">(</span><span class="n">encoder_model</span><span class="p">,</span> <span class="n">show_shapes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">prog</span><span class="o">=</span><span class="s1">&#39;dot&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">))</span>
 
@@ -15223,60 +15211,26 @@ shape of decoder_target_data(43977, 73, 30)
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-24-232c88dd8136&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> 
-<span class="ansi-green-intense-fg ansi-bold">      4</span> encoder_decoder_object <span class="ansi-blue-fg">=</span> EncoderDecoderModel<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg"> </span>encoder_model <span class="ansi-blue-fg">=</span> encoder_decoder_object<span class="ansi-blue-fg">.</span>build_encoder<span class="ansi-blue-fg">(</span>num_encoder_tokens<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span> 
-<span class="ansi-green-intense-fg ansi-bold">      7</span> SVG<span class="ansi-blue-fg">(</span>model_to_dot<span class="ansi-blue-fg">(</span>encoder_model<span class="ansi-blue-fg">,</span> show_shapes<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>create<span class="ansi-blue-fg">(</span>prog<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;dot&#39;</span><span class="ansi-blue-fg">,</span> format<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;svg&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">&lt;ipython-input-23-5140530fdaed&gt;</span> in <span class="ansi-cyan-fg">build_encoder</span><span class="ansi-blue-fg">(self, num_encoder_tokens, latent_dim, dropout, bilstm, num)</span>
-<span class="ansi-green-intense-fg ansi-bold">     27</span>             encoder_lstm = LSTM(self.latent_dim, 
-<span class="ansi-green-intense-fg ansi-bold">     28</span>                                 return_state<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">---&gt; 29</span><span class="ansi-red-fg">                                 dropout=dropout)
-</span><span class="ansi-green-intense-fg ansi-bold">     30</span> 
-<span class="ansi-green-intense-fg ansi-bold">     31</span>             _<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>state_h<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>state_c <span class="ansi-blue-fg">=</span> encoder_lstm<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>encoder_inputs<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/.local/lib/python3.6/site-packages/keras/legacy/interfaces.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     89</span>                 warnings.warn(&#39;Update your `&#39; + object_name +
-<span class="ansi-green-intense-fg ansi-bold">     90</span>                               &#39;` call to the Keras 2 API: &#39; + signature, stacklevel=2)
-<span class="ansi-green-fg">---&gt; 91</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     92</span>         wrapper<span class="ansi-blue-fg">.</span>_original_function <span class="ansi-blue-fg">=</span> func
-<span class="ansi-green-intense-fg ansi-bold">     93</span>         <span class="ansi-green-fg">return</span> wrapper
-
-<span class="ansi-green-fg">~/.local/lib/python3.6/site-packages/keras/layers/recurrent.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, units, activation, recurrent_activation, use_bias, kernel_initializer, recurrent_initializer, bias_initializer, unit_forget_bias, kernel_regularizer, recurrent_regularizer, bias_regularizer, activity_regularizer, kernel_constraint, recurrent_constraint, bias_constraint, dropout, recurrent_dropout, implementation, return_sequences, return_state, go_backwards, stateful, unroll, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2133</span>                         dropout<span class="ansi-blue-fg">=</span>dropout<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   2134</span>                         recurrent_dropout<span class="ansi-blue-fg">=</span>recurrent_dropout<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">-&gt; 2135</span><span class="ansi-red-fg">                         implementation=implementation)
-</span><span class="ansi-green-intense-fg ansi-bold">   2136</span>         super(LSTM, self).__init__(cell,
-<span class="ansi-green-intense-fg ansi-bold">   2137</span>                                    return_sequences<span class="ansi-blue-fg">=</span>return_sequences<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">~/.local/lib/python3.6/site-packages/keras/layers/recurrent.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, units, activation, recurrent_activation, use_bias, kernel_initializer, recurrent_initializer, bias_initializer, unit_forget_bias, kernel_regularizer, recurrent_regularizer, bias_regularizer, kernel_constraint, recurrent_constraint, bias_constraint, dropout, recurrent_dropout, implementation, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1804</span>                  implementation<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1805</span>                  **kwargs):
-<span class="ansi-green-fg">-&gt; 1806</span><span class="ansi-red-fg">         </span>super<span class="ansi-blue-fg">(</span>LSTMCell<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>__init__<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1807</span>         self<span class="ansi-blue-fg">.</span>units <span class="ansi-blue-fg">=</span> units
-<span class="ansi-green-intense-fg ansi-bold">   1808</span>         self<span class="ansi-blue-fg">.</span>activation <span class="ansi-blue-fg">=</span> activations<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>activation<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/.local/lib/python3.6/site-packages/keras/engine/topology.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    295</span>         <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> name<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    296</span>             prefix <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>__class__<span class="ansi-blue-fg">.</span>__name__
-<span class="ansi-green-fg">--&gt; 297</span><span class="ansi-red-fg">             </span>name <span class="ansi-blue-fg">=</span> _to_snake_case<span class="ansi-blue-fg">(</span>prefix<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">+</span> <span class="ansi-blue-fg">&#39;_&#39;</span> <span class="ansi-blue-fg">+</span> str<span class="ansi-blue-fg">(</span>K<span class="ansi-blue-fg">.</span>get_uid<span class="ansi-blue-fg">(</span>prefix<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    298</span>         self<span class="ansi-blue-fg">.</span>name <span class="ansi-blue-fg">=</span> name
-<span class="ansi-green-intense-fg ansi-bold">    299</span> 
-
-<span class="ansi-green-fg">~/.local/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py</span> in <span class="ansi-cyan-fg">get_uid</span><span class="ansi-blue-fg">(prefix)</span>
-<span class="ansi-green-intense-fg ansi-bold">     66</span>     &#34;&#34;&#34;
-<span class="ansi-green-intense-fg ansi-bold">     67</span>     <span class="ansi-green-fg">global</span> _GRAPH_UID_DICTS
-<span class="ansi-green-fg">---&gt; 68</span><span class="ansi-red-fg">     </span>graph <span class="ansi-blue-fg">=</span> tf<span class="ansi-blue-fg">.</span>get_default_graph<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     69</span>     <span class="ansi-green-fg">if</span> graph <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">in</span> _GRAPH_UID_DICTS<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     70</span>         _GRAPH_UID_DICTS<span class="ansi-blue-fg">[</span>graph<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> defaultdict<span class="ansi-blue-fg">(</span>int<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">AttributeError</span>: module &#39;tensorflow&#39; has no attribute &#39;get_default_graph&#39;</pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Model: &#34;model&#34;
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_1 (InputLayer)            [(None, None, 28)]   0                                            
+__________________________________________________________________________________________________
+bidirectional (Bidirectional)   [(None, 512), (None, 583680      input_1[0][0]                    
+__________________________________________________________________________________________________
+concatenate (Concatenate)       (None, 512)          0           bidirectional[0][1]              
+                                                                 bidirectional[0][3]              
+__________________________________________________________________________________________________
+concatenate_1 (Concatenate)     (None, 512)          0           bidirectional[0][2]              
+                                                                 bidirectional[0][4]              
+==================================================================================================
+Total params: 583,680
+Trainable params: 583,680
+Non-trainable params: 0
+__________________________________________________________________________________________________
+</pre>
 </div>
 </div>
 
@@ -15334,18 +15288,18 @@ Layer (type)                    Output Shape         Param #     Connected to
 ==================================================================================================
 input_4 (InputLayer)            [(None, None, 30)]   0                                            
 __________________________________________________________________________________________________
-input_2 (InputLayer)            [(None, 256)]        0                                            
+input_2 (InputLayer)            [(None, 512)]        0                                            
 __________________________________________________________________________________________________
-input_3 (InputLayer)            [(None, 256)]        0                                            
+input_3 (InputLayer)            [(None, 512)]        0                                            
 __________________________________________________________________________________________________
-lstm_1 (LSTM)                   [(None, None, 256),  293888      input_4[0][0]                    
+lstm_1 (LSTM)                   [(None, None, 512),  1112064     input_4[0][0]                    
                                                                  input_2[0][0]                    
                                                                  input_3[0][0]                    
 __________________________________________________________________________________________________
-dense (Dense)                   (None, None, 30)     7710        lstm_1[0][0]                     
+dense (Dense)                   (None, None, 30)     15390       lstm_1[0][0]                     
 ==================================================================================================
-Total params: 301,598
-Trainable params: 301,598
+Total params: 1,127,454
+Trainable params: 1,127,454
 Non-trainable params: 0
 __________________________________________________________________________________________________
 </pre>
@@ -15408,16 +15362,16 @@ input_1 (InputLayer)            [(None, None, 28)]   0
 __________________________________________________________________________________________________
 input_4 (InputLayer)            [(None, None, 30)]   0                                            
 __________________________________________________________________________________________________
-model (Functional)              [(None, 256), (None, 291840      input_1[0][0]                    
+model (Functional)              [(None, 512), (None, 583680      input_1[0][0]                    
 __________________________________________________________________________________________________
-lstm_1 (LSTM)                   [(None, None, 256),  293888      input_4[0][0]                    
+lstm_1 (LSTM)                   [(None, None, 512),  1112064     input_4[0][0]                    
                                                                  model[0][0]                      
                                                                  model[0][1]                      
 __________________________________________________________________________________________________
-dense (Dense)                   (None, None, 30)     7710        lstm_1[1][0]                     
+dense (Dense)                   (None, None, 30)     15390       lstm_1[1][0]                     
 ==================================================================================================
-Total params: 593,438
-Trainable params: 593,438
+Total params: 1,711,134
+Trainable params: 1,711,134
 Non-trainable params: 0
 __________________________________________________________________________________________________
 </pre>
@@ -15469,13 +15423,13 @@ ________________________________________________________________________________
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
 
 <span class="n">edm_object_256</span> <span class="o">=</span> <span class="n">EncoderDecoderModel</span><span class="p">()</span>
-<span class="n">encoder_model_256</span> <span class="o">=</span> <span class="n">edm_object_256</span><span class="o">.</span><span class="n">build_encoder</span><span class="p">(</span><span class="n">num_encoder_tokens</span><span class="p">,</span> <span class="n">bilstm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="n">encoder_model_256</span> <span class="o">=</span> <span class="n">edm_object_256</span><span class="o">.</span><span class="n">build_encoder</span><span class="p">(</span><span class="n">num_encoder_tokens</span><span class="p">,</span> <span class="n">bilstm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
 <span class="n">decoder_model_256</span> <span class="o">=</span> <span class="n">edm_object_256</span><span class="o">.</span><span class="n">build_decoder</span><span class="p">(</span><span class="n">num_decoder_tokens</span><span class="p">)</span>
 <span class="n">edm_256</span> <span class="o">=</span> <span class="n">edm_object_256</span><span class="o">.</span><span class="n">build_full</span><span class="p">()</span>
 
@@ -15506,389 +15460,117 @@ ________________________________________________________________________________
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Epoch 1/50
+138/138 [==============================] - 17s 76ms/step - loss: 1.4598 - val_loss: 1.3561
+Epoch 2/50
+138/138 [==============================] - 7s 52ms/step - loss: 0.8846 - val_loss: 1.0936
+Epoch 3/50
+138/138 [==============================] - 7s 51ms/step - loss: 0.7710 - val_loss: 0.9904
+Epoch 4/50
+138/138 [==============================] - 7s 51ms/step - loss: 0.7186 - val_loss: 0.9206
+Epoch 5/50
+138/138 [==============================] - 7s 51ms/step - loss: 0.6893 - val_loss: 0.8776
+Epoch 6/50
+138/138 [==============================] - 7s 51ms/step - loss: 0.6613 - val_loss: 0.8475
+Epoch 7/50
+138/138 [==============================] - 7s 52ms/step - loss: 0.6406 - val_loss: 0.8183
+Epoch 8/50
+138/138 [==============================] - 7s 51ms/step - loss: 0.6235 - val_loss: 0.7899
+Epoch 9/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.6102 - val_loss: 0.7665
+Epoch 10/50
+138/138 [==============================] - 7s 51ms/step - loss: 0.5983 - val_loss: 0.7538
+Epoch 11/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.5863 - val_loss: 0.7460
+Epoch 12/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.5763 - val_loss: 0.7202
+Epoch 13/50
+138/138 [==============================] - 8s 54ms/step - loss: 0.5661 - val_loss: 0.7032
+Epoch 14/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.5596 - val_loss: 0.6951
+Epoch 15/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.5513 - val_loss: 0.6915
+Epoch 16/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.5421 - val_loss: 0.6763
+Epoch 17/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.5386 - val_loss: 0.6659
+Epoch 18/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.5281 - val_loss: 0.6613
+Epoch 19/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.5244 - val_loss: 0.6564
+Epoch 20/50
+138/138 [==============================] - 7s 52ms/step - loss: 0.5201 - val_loss: 0.6536
+Epoch 21/50
+138/138 [==============================] - 7s 54ms/step - loss: 0.5157 - val_loss: 0.6430
+Epoch 22/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.5100 - val_loss: 0.6346
+Epoch 23/50
+138/138 [==============================] - 9s 64ms/step - loss: 0.5058 - val_loss: 0.6309
+Epoch 24/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.5034 - val_loss: 0.6287
+Epoch 25/50
+138/138 [==============================] - 7s 54ms/step - loss: 0.4991 - val_loss: 0.6203
+Epoch 26/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4934 - val_loss: 0.6167
+Epoch 27/50
+138/138 [==============================] - 7s 52ms/step - loss: 0.4927 - val_loss: 0.6219
+Epoch 28/50
+138/138 [==============================] - 7s 52ms/step - loss: 0.4898 - val_loss: 0.6112
+Epoch 29/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4851 - val_loss: 0.6015
+Epoch 30/50
+138/138 [==============================] - 7s 52ms/step - loss: 0.4806 - val_loss: 0.6004
+Epoch 31/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4788 - val_loss: 0.5986
+Epoch 32/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4763 - val_loss: 0.5995
+Epoch 33/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4762 - val_loss: 0.5954
+Epoch 34/50
+138/138 [==============================] - 7s 52ms/step - loss: 0.4712 - val_loss: 0.5879
+Epoch 35/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4685 - val_loss: 0.5879
+Epoch 36/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4651 - val_loss: 0.5869
+Epoch 37/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4639 - val_loss: 0.5900
+Epoch 38/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4604 - val_loss: 0.5815
+Epoch 39/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4609 - val_loss: 0.5763
+Epoch 40/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4594 - val_loss: 0.5765
+Epoch 41/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4548 - val_loss: 0.5759
+Epoch 42/50
+138/138 [==============================] - 7s 52ms/step - loss: 0.4506 - val_loss: 0.5753
+Epoch 43/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4488 - val_loss: 0.5739
+Epoch 44/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4484 - val_loss: 0.5743
+Epoch 45/50
+138/138 [==============================] - 7s 54ms/step - loss: 0.4470 - val_loss: 0.5732
+Epoch 46/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4421 - val_loss: 0.5680
+Epoch 47/50
+138/138 [==============================] - 9s 63ms/step - loss: 0.4426 - val_loss: 0.5653
+Epoch 48/50
+138/138 [==============================] - 8s 55ms/step - loss: 0.4453 - val_loss: 0.5639
+Epoch 49/50
+138/138 [==============================] - 9s 65ms/step - loss: 0.4396 - val_loss: 0.5653
+Epoch 50/50
+138/138 [==============================] - 7s 53ms/step - loss: 0.4393 - val_loss: 0.5593
 </pre>
 </div>
 </div>
 
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">KeyboardInterrupt</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-22-f9e5348d7b07&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     10</span> edm_256.fit([encoder_input_data, decoder_input_data],  # training data
-<span class="ansi-green-intense-fg ansi-bold">     11</span>           decoder_target_data<span class="ansi-blue-fg">,</span>                       <span class="ansi-red-fg"># labels (left shift of the target sequences)</span>
-<span class="ansi-green-fg">---&gt; 12</span><span class="ansi-red-fg">           batch_size=256, epochs=50, validation_split=0.2)
-</span><span class="ansi-green-intense-fg ansi-bold">     13</span> 
-<span class="ansi-green-intense-fg ansi-bold">     14</span> edm_256<span class="ansi-blue-fg">.</span>save<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;seq2seq256.h5&#39;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/keras/engine/training.py</span> in <span class="ansi-cyan-fg">fit</span><span class="ansi-blue-fg">(self, x, y, batch_size, epochs, verbose, callbacks, validation_split, validation_data, shuffle, class_weight, sample_weight, initial_epoch, steps_per_epoch, validation_steps, validation_batch_size, validation_freq, max_queue_size, workers, use_multiprocessing)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1098</span>                 _r=1):
-<span class="ansi-green-intense-fg ansi-bold">   1099</span>               callbacks<span class="ansi-blue-fg">.</span>on_train_batch_begin<span class="ansi-blue-fg">(</span>step<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 1100</span><span class="ansi-red-fg">               </span>tmp_logs <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>train_function<span class="ansi-blue-fg">(</span>iterator<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1101</span>               <span class="ansi-green-fg">if</span> data_handler<span class="ansi-blue-fg">.</span>should_sync<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1102</span>                 context<span class="ansi-blue-fg">.</span>async_wait<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, *args, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">    826</span>     tracing_count <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>experimental_get_tracing_count<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    827</span>     <span class="ansi-green-fg">with</span> trace<span class="ansi-blue-fg">.</span>Trace<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_name<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> tm<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 828</span><span class="ansi-red-fg">       </span>result <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_call<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    829</span>       compiler <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#34;xla&#34;</span> <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>_experimental_compile <span class="ansi-green-fg">else</span> <span class="ansi-blue-fg">&#34;nonXla&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">    830</span>       new_tracing_count <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>experimental_get_tracing_count<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ansi-cyan-fg">_call</span><span class="ansi-blue-fg">(self, *args, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">    886</span>         <span class="ansi-red-fg"># Lifting succeeded, so variables are initialized and we can run the</span>
-<span class="ansi-green-intense-fg ansi-bold">    887</span>         <span class="ansi-red-fg"># stateless function.</span>
-<span class="ansi-green-fg">--&gt; 888</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_stateless_fn<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    889</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    890</span>       _<span class="ansi-blue-fg">,</span> _<span class="ansi-blue-fg">,</span> _<span class="ansi-blue-fg">,</span> filtered_flat_args <span class="ansi-blue-fg">=</span><span class="ansi-red-fg"> </span><span class="ansi-red-fg">\</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/eager/function.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2939</span>     <span class="ansi-green-fg">with</span> self<span class="ansi-blue-fg">.</span>_lock<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   2940</span>       (graph_function,
-<span class="ansi-green-fg">-&gt; 2941</span><span class="ansi-red-fg">        filtered_flat_args) = self._maybe_define_function(args, kwargs)
-</span><span class="ansi-green-intense-fg ansi-bold">   2942</span>     return graph_function._call_flat(
-<span class="ansi-green-intense-fg ansi-bold">   2943</span>         filtered_flat_args, captured_inputs=graph_function.captured_inputs)  # pylint: disable=protected-access
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/eager/function.py</span> in <span class="ansi-cyan-fg">_maybe_define_function</span><span class="ansi-blue-fg">(self, args, kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3359</span> 
-<span class="ansi-green-intense-fg ansi-bold">   3360</span>           self<span class="ansi-blue-fg">.</span>_function_cache<span class="ansi-blue-fg">.</span>missed<span class="ansi-blue-fg">.</span>add<span class="ansi-blue-fg">(</span>call_context_key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 3361</span><span class="ansi-red-fg">           </span>graph_function <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_create_graph_function<span class="ansi-blue-fg">(</span>args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3362</span>           self<span class="ansi-blue-fg">.</span>_function_cache<span class="ansi-blue-fg">.</span>primary<span class="ansi-blue-fg">[</span>cache_key<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> graph_function
-<span class="ansi-green-intense-fg ansi-bold">   3363</span> 
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/eager/function.py</span> in <span class="ansi-cyan-fg">_create_graph_function</span><span class="ansi-blue-fg">(self, args, kwargs, override_flat_arg_shapes)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3204</span>             arg_names<span class="ansi-blue-fg">=</span>arg_names<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   3205</span>             override_flat_arg_shapes<span class="ansi-blue-fg">=</span>override_flat_arg_shapes<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">-&gt; 3206</span><span class="ansi-red-fg">             capture_by_value=self._capture_by_value),
-</span><span class="ansi-green-intense-fg ansi-bold">   3207</span>         self<span class="ansi-blue-fg">.</span>_function_attributes<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   3208</span>         function_spec<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>function_spec<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/framework/func_graph.py</span> in <span class="ansi-cyan-fg">func_graph_from_py_func</span><span class="ansi-blue-fg">(name, python_func, args, kwargs, signature, func_graph, autograph, autograph_options, add_control_dependencies, arg_names, op_return_value, collections, capture_by_value, override_flat_arg_shapes)</span>
-<span class="ansi-green-intense-fg ansi-bold">    988</span>         _<span class="ansi-blue-fg">,</span> original_func <span class="ansi-blue-fg">=</span> tf_decorator<span class="ansi-blue-fg">.</span>unwrap<span class="ansi-blue-fg">(</span>python_func<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    989</span> 
-<span class="ansi-green-fg">--&gt; 990</span><span class="ansi-red-fg">       </span>func_outputs <span class="ansi-blue-fg">=</span> python_func<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>func_args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>func_kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    991</span> 
-<span class="ansi-green-intense-fg ansi-bold">    992</span>       <span class="ansi-red-fg"># invariant: `func_outputs` contains only Tensors, CompositeTensors,</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/eager/def_function.py</span> in <span class="ansi-cyan-fg">wrapped_fn</span><span class="ansi-blue-fg">(*args, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">    632</span>             xla_context<span class="ansi-blue-fg">.</span>Exit<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    633</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 634</span><span class="ansi-red-fg">           </span>out <span class="ansi-blue-fg">=</span> weak_wrapped_fn<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>__wrapped__<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    635</span>         <span class="ansi-green-fg">return</span> out
-<span class="ansi-green-intense-fg ansi-bold">    636</span> 
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/framework/func_graph.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    971</span>                     recursive<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    972</span>                     optional_features<span class="ansi-blue-fg">=</span>autograph_options<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 973</span><span class="ansi-red-fg">                     </span>user_requested<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    974</span>                 ))
-<span class="ansi-green-intense-fg ansi-bold">    975</span>           <span class="ansi-green-fg">except</span> Exception <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># pylint:disable=broad-except</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">converted_call</span><span class="ansi-blue-fg">(f, args, kwargs, caller_fn_scope, options)</span>
-<span class="ansi-green-intense-fg ansi-bold">    457</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    458</span>       <span class="ansi-green-fg">if</span> kwargs <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 459</span><span class="ansi-red-fg">         </span>result <span class="ansi-blue-fg">=</span> converted_f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>effective_args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    460</span>       <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    461</span>         result <span class="ansi-blue-fg">=</span> converted_f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>effective_args<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/keras/engine/training.py</span> in <span class="ansi-cyan-fg">tf__train_function</span><span class="ansi-blue-fg">(iterator)</span>
-<span class="ansi-green-intense-fg ansi-bold">     14</span>                 <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     15</span>                     do_return <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">True</span>
-<span class="ansi-green-fg">---&gt; 16</span><span class="ansi-red-fg">                     </span>retval_ <span class="ansi-blue-fg">=</span> ag__<span class="ansi-blue-fg">.</span>converted_call<span class="ansi-blue-fg">(</span>ag__<span class="ansi-blue-fg">.</span>ld<span class="ansi-blue-fg">(</span>step_function<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span>ag__<span class="ansi-blue-fg">.</span>ld<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> ag__<span class="ansi-blue-fg">.</span>ld<span class="ansi-blue-fg">(</span>iterator<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> fscope<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     17</span>                 <span class="ansi-green-fg">except</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     18</span>                     do_return <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">False</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">converted_call</span><span class="ansi-blue-fg">(f, args, kwargs, caller_fn_scope, options)</span>
-<span class="ansi-green-intense-fg ansi-bold">    348</span>   <span class="ansi-green-fg">if</span> conversion<span class="ansi-blue-fg">.</span>is_in_allowlist_cache<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> options<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    349</span>     logging<span class="ansi-blue-fg">.</span>log<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Allowlisted %s: from cache&#39;</span><span class="ansi-blue-fg">,</span> f<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 350</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> _call_unconverted<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> options<span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">False</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    351</span> 
-<span class="ansi-green-intense-fg ansi-bold">    352</span>   <span class="ansi-green-fg">if</span> ag_ctx<span class="ansi-blue-fg">.</span>control_status_ctx<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>status <span class="ansi-blue-fg">==</span> ag_ctx<span class="ansi-blue-fg">.</span>Status<span class="ansi-blue-fg">.</span>DISABLED<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">_call_unconverted</span><span class="ansi-blue-fg">(f, args, kwargs, options, update_cache)</span>
-<span class="ansi-green-intense-fg ansi-bold">    477</span>   <span class="ansi-green-fg">if</span> kwargs <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    478</span>     <span class="ansi-green-fg">return</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 479</span><span class="ansi-red-fg">   </span><span class="ansi-green-fg">return</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    480</span> 
-<span class="ansi-green-intense-fg ansi-bold">    481</span> 
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/keras/engine/training.py</span> in <span class="ansi-cyan-fg">step_function</span><span class="ansi-blue-fg">(model, iterator)</span>
-<span class="ansi-green-intense-fg ansi-bold">    793</span> 
-<span class="ansi-green-intense-fg ansi-bold">    794</span>       data <span class="ansi-blue-fg">=</span> next<span class="ansi-blue-fg">(</span>iterator<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 795</span><span class="ansi-red-fg">       </span>outputs <span class="ansi-blue-fg">=</span> model<span class="ansi-blue-fg">.</span>distribute_strategy<span class="ansi-blue-fg">.</span>run<span class="ansi-blue-fg">(</span>run_step<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">(</span>data<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    796</span>       outputs = reduce_per_replica(
-<span class="ansi-green-intense-fg ansi-bold">    797</span>           outputs, self.distribute_strategy, reduction=&#39;first&#39;)
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/distribute/distribute_lib.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-fg">(***failed resolving arguments***)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1257</span>       fn = autograph.tf_convert(
-<span class="ansi-green-intense-fg ansi-bold">   1258</span>           fn, autograph_ctx.control_status_ctx(), convert_by_default=False)
-<span class="ansi-green-fg">-&gt; 1259</span><span class="ansi-red-fg">       </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_extended<span class="ansi-blue-fg">.</span>call_for_each_replica<span class="ansi-blue-fg">(</span>fn<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">=</span>args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">=</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1260</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1261</span>   <span class="ansi-green-fg">def</span> reduce<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> reduce_op<span class="ansi-blue-fg">,</span> value<span class="ansi-blue-fg">,</span> axis<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/distribute/distribute_lib.py</span> in <span class="ansi-cyan-fg">call_for_each_replica</span><span class="ansi-blue-fg">(self, fn, args, kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2728</span>       kwargs <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span>
-<span class="ansi-green-intense-fg ansi-bold">   2729</span>     <span class="ansi-green-fg">with</span> self<span class="ansi-blue-fg">.</span>_container_strategy<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>scope<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2730</span><span class="ansi-red-fg">       </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_call_for_each_replica<span class="ansi-blue-fg">(</span>fn<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2731</span> 
-<span class="ansi-green-intense-fg ansi-bold">   2732</span>   <span class="ansi-green-fg">def</span> _call_for_each_replica<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> fn<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/distribute/distribute_lib.py</span> in <span class="ansi-cyan-fg">_call_for_each_replica</span><span class="ansi-blue-fg">(self, fn, args, kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3415</span>   <span class="ansi-green-fg">def</span> _call_for_each_replica<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> fn<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   3416</span>     <span class="ansi-green-fg">with</span> ReplicaContext<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_container_strategy<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> replica_id_in_sync_group<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 3417</span><span class="ansi-red-fg">       </span><span class="ansi-green-fg">return</span> fn<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3418</span> 
-<span class="ansi-green-intense-fg ansi-bold">   3419</span>   <span class="ansi-green-fg">def</span> _reduce_to<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> reduce_op<span class="ansi-blue-fg">,</span> value<span class="ansi-blue-fg">,</span> destinations<span class="ansi-blue-fg">,</span> options<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    665</span>       <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    666</span>         <span class="ansi-green-fg">with</span> conversion_ctx<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 667</span><span class="ansi-red-fg">           </span><span class="ansi-green-fg">return</span> converted_call<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> options<span class="ansi-blue-fg">=</span>options<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    668</span>       <span class="ansi-green-fg">except</span> Exception <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># pylint:disable=broad-except</span>
-<span class="ansi-green-intense-fg ansi-bold">    669</span>         <span class="ansi-green-fg">if</span> hasattr<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;ag_error_metadata&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">converted_call</span><span class="ansi-blue-fg">(f, args, kwargs, caller_fn_scope, options)</span>
-<span class="ansi-green-intense-fg ansi-bold">    394</span> 
-<span class="ansi-green-intense-fg ansi-bold">    395</span>   <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> options<span class="ansi-blue-fg">.</span>user_requested <span class="ansi-green-fg">and</span> conversion<span class="ansi-blue-fg">.</span>is_allowlisted<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 396</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> _call_unconverted<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> options<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    397</span> 
-<span class="ansi-green-intense-fg ansi-bold">    398</span>   <span class="ansi-red-fg"># internal_convert_user_code is for example turned off when issuing a dynamic</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">_call_unconverted</span><span class="ansi-blue-fg">(f, args, kwargs, options, update_cache)</span>
-<span class="ansi-green-intense-fg ansi-bold">    476</span> 
-<span class="ansi-green-intense-fg ansi-bold">    477</span>   <span class="ansi-green-fg">if</span> kwargs <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 478</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    479</span>   <span class="ansi-green-fg">return</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    480</span> 
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/keras/engine/training.py</span> in <span class="ansi-cyan-fg">run_step</span><span class="ansi-blue-fg">(data)</span>
-<span class="ansi-green-intense-fg ansi-bold">    786</span> 
-<span class="ansi-green-intense-fg ansi-bold">    787</span>       <span class="ansi-green-fg">def</span> run_step<span class="ansi-blue-fg">(</span>data<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 788</span><span class="ansi-red-fg">         </span>outputs <span class="ansi-blue-fg">=</span> model<span class="ansi-blue-fg">.</span>train_step<span class="ansi-blue-fg">(</span>data<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    789</span>         <span class="ansi-red-fg"># Ensure counter is updated only if `train_step` succeeds.</span>
-<span class="ansi-green-intense-fg ansi-bold">    790</span>         <span class="ansi-green-fg">with</span> ops<span class="ansi-blue-fg">.</span>control_dependencies<span class="ansi-blue-fg">(</span>_minimum_control_deps<span class="ansi-blue-fg">(</span>outputs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/keras/engine/training.py</span> in <span class="ansi-cyan-fg">train_step</span><span class="ansi-blue-fg">(self, data)</span>
-<span class="ansi-green-intense-fg ansi-bold">    755</span>       loss = self.compiled_loss(
-<span class="ansi-green-intense-fg ansi-bold">    756</span>           y, y_pred, sample_weight, regularization_losses=self.losses)
-<span class="ansi-green-fg">--&gt; 757</span><span class="ansi-red-fg">     </span>self<span class="ansi-blue-fg">.</span>optimizer<span class="ansi-blue-fg">.</span>minimize<span class="ansi-blue-fg">(</span>loss<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>trainable_variables<span class="ansi-blue-fg">,</span> tape<span class="ansi-blue-fg">=</span>tape<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    758</span>     self<span class="ansi-blue-fg">.</span>compiled_metrics<span class="ansi-blue-fg">.</span>update_state<span class="ansi-blue-fg">(</span>y<span class="ansi-blue-fg">,</span> y_pred<span class="ansi-blue-fg">,</span> sample_weight<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    759</span>     <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">{</span>m<span class="ansi-blue-fg">.</span>name<span class="ansi-blue-fg">:</span> m<span class="ansi-blue-fg">.</span>result<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> m <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>metrics<span class="ansi-blue-fg">}</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/keras/optimizer_v2/optimizer_v2.py</span> in <span class="ansi-cyan-fg">minimize</span><span class="ansi-blue-fg">(self, loss, var_list, grad_loss, name, tape)</span>
-<span class="ansi-green-intense-fg ansi-bold">    496</span>     grads_and_vars = self._compute_gradients(
-<span class="ansi-green-intense-fg ansi-bold">    497</span>         loss, var_list=var_list, grad_loss=grad_loss, tape=tape)
-<span class="ansi-green-fg">--&gt; 498</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>apply_gradients<span class="ansi-blue-fg">(</span>grads_and_vars<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">=</span>name<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    499</span> 
-<span class="ansi-green-intense-fg ansi-bold">    500</span>   <span class="ansi-green-fg">def</span> _compute_gradients<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> loss<span class="ansi-blue-fg">,</span> var_list<span class="ansi-blue-fg">,</span> grad_loss<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> tape<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/keras/optimizer_v2/optimizer_v2.py</span> in <span class="ansi-cyan-fg">apply_gradients</span><span class="ansi-blue-fg">(self, grads_and_vars, name, experimental_aggregate_gradients)</span>
-<span class="ansi-green-intense-fg ansi-bold">    633</span>           args<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">(</span>grads_and_vars<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    634</span>           kwargs={
-<span class="ansi-green-fg">--&gt; 635</span><span class="ansi-red-fg">               </span><span class="ansi-blue-fg">&#34;name&#34;</span><span class="ansi-blue-fg">:</span> name<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    636</span>           })
-<span class="ansi-green-intense-fg ansi-bold">    637</span> 
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/distribute/distribute_lib.py</span> in <span class="ansi-cyan-fg">merge_call</span><span class="ansi-blue-fg">(self, merge_fn, args, kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2939</span>     merge_fn = autograph.tf_convert(
-<span class="ansi-green-intense-fg ansi-bold">   2940</span>         merge_fn, autograph_ctx.control_status_ctx(), convert_by_default=False)
-<span class="ansi-green-fg">-&gt; 2941</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_merge_call<span class="ansi-blue-fg">(</span>merge_fn<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2942</span> 
-<span class="ansi-green-intense-fg ansi-bold">   2943</span>   <span class="ansi-green-fg">def</span> _merge_call<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> merge_fn<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/distribute/distribute_lib.py</span> in <span class="ansi-cyan-fg">_merge_call</span><span class="ansi-blue-fg">(self, merge_fn, args, kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2946</span>         distribution_strategy_context._CrossReplicaThreadMode(self._strategy))  # pylint: disable=protected-access
-<span class="ansi-green-intense-fg ansi-bold">   2947</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2948</span><span class="ansi-red-fg">       </span><span class="ansi-green-fg">return</span> merge_fn<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_strategy<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2949</span>     <span class="ansi-green-fg">finally</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   2950</span>       _pop_per_thread_mode<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    665</span>       <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    666</span>         <span class="ansi-green-fg">with</span> conversion_ctx<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 667</span><span class="ansi-red-fg">           </span><span class="ansi-green-fg">return</span> converted_call<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> options<span class="ansi-blue-fg">=</span>options<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    668</span>       <span class="ansi-green-fg">except</span> Exception <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># pylint:disable=broad-except</span>
-<span class="ansi-green-intense-fg ansi-bold">    669</span>         <span class="ansi-green-fg">if</span> hasattr<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;ag_error_metadata&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">converted_call</span><span class="ansi-blue-fg">(f, args, kwargs, caller_fn_scope, options)</span>
-<span class="ansi-green-intense-fg ansi-bold">    374</span>         new_kwargs<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    375</span>         caller_fn_scope<span class="ansi-blue-fg">=</span>caller_fn_scope<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 376</span><span class="ansi-red-fg">         options=options)
-</span><span class="ansi-green-intense-fg ansi-bold">    377</span> 
-<span class="ansi-green-intense-fg ansi-bold">    378</span>   <span class="ansi-green-fg">if</span> inspect_utils<span class="ansi-blue-fg">.</span>isbuiltin<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">converted_call</span><span class="ansi-blue-fg">(f, args, kwargs, caller_fn_scope, options)</span>
-<span class="ansi-green-intense-fg ansi-bold">    348</span>   <span class="ansi-green-fg">if</span> conversion<span class="ansi-blue-fg">.</span>is_in_allowlist_cache<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> options<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    349</span>     logging<span class="ansi-blue-fg">.</span>log<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Allowlisted %s: from cache&#39;</span><span class="ansi-blue-fg">,</span> f<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 350</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> _call_unconverted<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> options<span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">False</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    351</span> 
-<span class="ansi-green-intense-fg ansi-bold">    352</span>   <span class="ansi-green-fg">if</span> ag_ctx<span class="ansi-blue-fg">.</span>control_status_ctx<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>status <span class="ansi-blue-fg">==</span> ag_ctx<span class="ansi-blue-fg">.</span>Status<span class="ansi-blue-fg">.</span>DISABLED<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">_call_unconverted</span><span class="ansi-blue-fg">(f, args, kwargs, options, update_cache)</span>
-<span class="ansi-green-intense-fg ansi-bold">    476</span> 
-<span class="ansi-green-intense-fg ansi-bold">    477</span>   <span class="ansi-green-fg">if</span> kwargs <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 478</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    479</span>   <span class="ansi-green-fg">return</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    480</span> 
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/keras/optimizer_v2/optimizer_v2.py</span> in <span class="ansi-cyan-fg">_distributed_apply</span><span class="ansi-blue-fg">(self, distribution, grads_and_vars, name, apply_state)</span>
-<span class="ansi-green-intense-fg ansi-bold">    681</span>                               &#34;update_&#34; + var.op.name, skip_on_eager=True):
-<span class="ansi-green-intense-fg ansi-bold">    682</span>             update_ops.extend(distribution.extended.update(
-<span class="ansi-green-fg">--&gt; 683</span><span class="ansi-red-fg">                 var, apply_grad_to_update_var, args=(grad,), group=False))
-</span><span class="ansi-green-intense-fg ansi-bold">    684</span> 
-<span class="ansi-green-intense-fg ansi-bold">    685</span>       any_symbolic = any(isinstance(i, ops.Operation) or
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/distribute/distribute_lib.py</span> in <span class="ansi-cyan-fg">update</span><span class="ansi-blue-fg">(self, var, fn, args, kwargs, group)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2492</span>         fn, autograph_ctx.control_status_ctx(), convert_by_default=False)
-<span class="ansi-green-intense-fg ansi-bold">   2493</span>     <span class="ansi-green-fg">with</span> self<span class="ansi-blue-fg">.</span>_container_strategy<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>scope<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2494</span><span class="ansi-red-fg">       </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_update<span class="ansi-blue-fg">(</span>var<span class="ansi-blue-fg">,</span> fn<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> group<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2495</span> 
-<span class="ansi-green-intense-fg ansi-bold">   2496</span>   <span class="ansi-green-fg">def</span> _update<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> var<span class="ansi-blue-fg">,</span> fn<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> group<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/distribute/distribute_lib.py</span> in <span class="ansi-cyan-fg">_update</span><span class="ansi-blue-fg">(self, var, fn, args, kwargs, group)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3429</span>     <span class="ansi-red-fg"># The implementations of _update() and _update_non_slot() are identical</span>
-<span class="ansi-green-intense-fg ansi-bold">   3430</span>     <span class="ansi-red-fg"># except _update() passes `var` as the first argument to `fn()`.</span>
-<span class="ansi-green-fg">-&gt; 3431</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_update_non_slot<span class="ansi-blue-fg">(</span>var<span class="ansi-blue-fg">,</span> fn<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span>var<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">+</span> tuple<span class="ansi-blue-fg">(</span>args<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> group<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3432</span> 
-<span class="ansi-green-intense-fg ansi-bold">   3433</span>   <span class="ansi-green-fg">def</span> _update_non_slot<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> colocate_with<span class="ansi-blue-fg">,</span> fn<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> should_group<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/distribute/distribute_lib.py</span> in <span class="ansi-cyan-fg">_update_non_slot</span><span class="ansi-blue-fg">(self, colocate_with, fn, args, kwargs, should_group)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3435</span>     <span class="ansi-red-fg"># once that value is used for something.</span>
-<span class="ansi-green-intense-fg ansi-bold">   3436</span>     <span class="ansi-green-fg">with</span> UpdateContext<span class="ansi-blue-fg">(</span>colocate_with<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 3437</span><span class="ansi-red-fg">       </span>result <span class="ansi-blue-fg">=</span> fn<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3438</span>       <span class="ansi-green-fg">if</span> should_group<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   3439</span>         <span class="ansi-green-fg">return</span> result
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    665</span>       <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    666</span>         <span class="ansi-green-fg">with</span> conversion_ctx<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 667</span><span class="ansi-red-fg">           </span><span class="ansi-green-fg">return</span> converted_call<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> options<span class="ansi-blue-fg">=</span>options<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    668</span>       <span class="ansi-green-fg">except</span> Exception <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># pylint:disable=broad-except</span>
-<span class="ansi-green-intense-fg ansi-bold">    669</span>         <span class="ansi-green-fg">if</span> hasattr<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;ag_error_metadata&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">converted_call</span><span class="ansi-blue-fg">(f, args, kwargs, caller_fn_scope, options)</span>
-<span class="ansi-green-intense-fg ansi-bold">    348</span>   <span class="ansi-green-fg">if</span> conversion<span class="ansi-blue-fg">.</span>is_in_allowlist_cache<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> options<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    349</span>     logging<span class="ansi-blue-fg">.</span>log<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Allowlisted %s: from cache&#39;</span><span class="ansi-blue-fg">,</span> f<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 350</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> _call_unconverted<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> options<span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">False</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    351</span> 
-<span class="ansi-green-intense-fg ansi-bold">    352</span>   <span class="ansi-green-fg">if</span> ag_ctx<span class="ansi-blue-fg">.</span>control_status_ctx<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>status <span class="ansi-blue-fg">==</span> ag_ctx<span class="ansi-blue-fg">.</span>Status<span class="ansi-blue-fg">.</span>DISABLED<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/autograph/impl/api.py</span> in <span class="ansi-cyan-fg">_call_unconverted</span><span class="ansi-blue-fg">(f, args, kwargs, options, update_cache)</span>
-<span class="ansi-green-intense-fg ansi-bold">    476</span> 
-<span class="ansi-green-intense-fg ansi-bold">    477</span>   <span class="ansi-green-fg">if</span> kwargs <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 478</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    479</span>   <span class="ansi-green-fg">return</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    480</span> 
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/keras/optimizer_v2/optimizer_v2.py</span> in <span class="ansi-cyan-fg">apply_grad_to_update_var</span><span class="ansi-blue-fg">(var, grad)</span>
-<span class="ansi-green-intense-fg ansi-bold">    656</span>       <span class="ansi-green-fg">if</span> <span class="ansi-blue-fg">&#34;apply_state&#34;</span> <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>_dense_apply_args<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    657</span>         apply_kwargs<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;apply_state&#34;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> apply_state
-<span class="ansi-green-fg">--&gt; 658</span><span class="ansi-red-fg">       </span>update_op <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_resource_apply_dense<span class="ansi-blue-fg">(</span>grad<span class="ansi-blue-fg">,</span> var<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>apply_kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    659</span>       <span class="ansi-green-fg">if</span> var<span class="ansi-blue-fg">.</span>constraint <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    660</span>         <span class="ansi-green-fg">with</span> ops<span class="ansi-blue-fg">.</span>control_dependencies<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span>update_op<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/keras/optimizer_v2/rmsprop.py</span> in <span class="ansi-cyan-fg">_resource_apply_dense</span><span class="ansi-blue-fg">(self, grad, var, apply_state)</span>
-<span class="ansi-green-intense-fg ansi-bold">    217</span>         denom_t <span class="ansi-blue-fg">=</span> rms_t <span class="ansi-blue-fg">-</span> math_ops<span class="ansi-blue-fg">.</span>square<span class="ansi-blue-fg">(</span>mg_t<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    218</span>       var_t = var - coefficients[&#34;lr_t&#34;] * grad / (
-<span class="ansi-green-fg">--&gt; 219</span><span class="ansi-red-fg">           math_ops.sqrt(denom_t) + coefficients[&#34;epsilon&#34;])
-</span><span class="ansi-green-intense-fg ansi-bold">    220</span>       <span class="ansi-green-fg">return</span> state_ops<span class="ansi-blue-fg">.</span>assign<span class="ansi-blue-fg">(</span>var<span class="ansi-blue-fg">,</span> var_t<span class="ansi-blue-fg">,</span> use_locking<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>_use_locking<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>op
-<span class="ansi-green-intense-fg ansi-bold">    221</span> 
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/ops/math_ops.py</span> in <span class="ansi-cyan-fg">binary_op_wrapper</span><span class="ansi-blue-fg">(x, y)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1162</span>     <span class="ansi-green-fg">with</span> ops<span class="ansi-blue-fg">.</span>name_scope<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> op_name<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">[</span>x<span class="ansi-blue-fg">,</span> y<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> name<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1163</span>       <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 1164</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">,</span> y<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">=</span>name<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1165</span>       <span class="ansi-green-fg">except</span> <span class="ansi-blue-fg">(</span>TypeError<span class="ansi-blue-fg">,</span> ValueError<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1166</span>         <span class="ansi-red-fg"># Even if dispatching the op failed, the RHS may be a tensor aware</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/util/dispatch.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    199</span>     <span class="ansi-blue-fg">&#34;&#34;&#34;Call target, and fall back on dispatchers if there is a TypeError.&#34;&#34;&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">    200</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 201</span><span class="ansi-red-fg">       </span><span class="ansi-green-fg">return</span> target<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    202</span>     <span class="ansi-green-fg">except</span> <span class="ansi-blue-fg">(</span>TypeError<span class="ansi-blue-fg">,</span> ValueError<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    203</span>       <span class="ansi-red-fg"># Note: convert_to_eager_tensor currently raises a ValueError, not a</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/ops/math_ops.py</span> in <span class="ansi-cyan-fg">_add_dispatch</span><span class="ansi-blue-fg">(x, y, name)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1484</span>     <span class="ansi-green-fg">return</span> gen_math_ops<span class="ansi-blue-fg">.</span>add<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">,</span> y<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">=</span>name<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1485</span>   <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 1486</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> gen_math_ops<span class="ansi-blue-fg">.</span>add_v2<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">,</span> y<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">=</span>name<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1487</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1488</span> 
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/ops/gen_math_ops.py</span> in <span class="ansi-cyan-fg">add_v2</span><span class="ansi-blue-fg">(x, y, name)</span>
-<span class="ansi-green-intense-fg ansi-bold">    480</span>   <span class="ansi-red-fg"># Add nodes to the TensorFlow graph.</span>
-<span class="ansi-green-intense-fg ansi-bold">    481</span>   _, _, _op, _outputs = _op_def_library._apply_op_helper(
-<span class="ansi-green-fg">--&gt; 482</span><span class="ansi-red-fg">         &#34;AddV2&#34;, x=x, y=y, name=name)
-</span><span class="ansi-green-intense-fg ansi-bold">    483</span>   _result <span class="ansi-blue-fg">=</span> _outputs<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">    484</span>   <span class="ansi-green-fg">if</span> _execute<span class="ansi-blue-fg">.</span>must_record_gradient<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py</span> in <span class="ansi-cyan-fg">_apply_op_helper</span><span class="ansi-blue-fg">(op_type_name, name, **keywords)</span>
-<span class="ansi-green-intense-fg ansi-bold">    748</span>       op = g._create_op_internal(op_type_name, inputs, dtypes=None,
-<span class="ansi-green-intense-fg ansi-bold">    749</span>                                  name<span class="ansi-blue-fg">=</span>scope<span class="ansi-blue-fg">,</span> input_types<span class="ansi-blue-fg">=</span>input_types<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 750</span><span class="ansi-red-fg">                                  attrs=attr_protos, op_def=op_def)
-</span><span class="ansi-green-intense-fg ansi-bold">    751</span> 
-<span class="ansi-green-intense-fg ansi-bold">    752</span>     <span class="ansi-red-fg"># `outputs` is returned as a separate return value so that the output</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/framework/func_graph.py</span> in <span class="ansi-cyan-fg">_create_op_internal</span><span class="ansi-blue-fg">(self, op_type, inputs, dtypes, input_types, name, attrs, op_def, compute_device)</span>
-<span class="ansi-green-intense-fg ansi-bold">    590</span>     return super(FuncGraph, self)._create_op_internal(  # pylint: disable=protected-access
-<span class="ansi-green-intense-fg ansi-bold">    591</span>         op_type<span class="ansi-blue-fg">,</span> captured_inputs<span class="ansi-blue-fg">,</span> dtypes<span class="ansi-blue-fg">,</span> input_types<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">,</span> attrs<span class="ansi-blue-fg">,</span> op_def<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 592</span><span class="ansi-red-fg">         compute_device)
-</span><span class="ansi-green-intense-fg ansi-bold">    593</span> 
-<span class="ansi-green-intense-fg ansi-bold">    594</span>   <span class="ansi-green-fg">def</span> capture<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> tensor<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> shape<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ansi-cyan-fg">_create_op_internal</span><span class="ansi-blue-fg">(self, op_type, inputs, dtypes, input_types, name, attrs, op_def, compute_device)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3534</span>           input_types<span class="ansi-blue-fg">=</span>input_types<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   3535</span>           original_op<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>_default_original_op<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">-&gt; 3536</span><span class="ansi-red-fg">           op_def=op_def)
-</span><span class="ansi-green-intense-fg ansi-bold">   3537</span>       self<span class="ansi-blue-fg">.</span>_create_op_helper<span class="ansi-blue-fg">(</span>ret<span class="ansi-blue-fg">,</span> compute_device<span class="ansi-blue-fg">=</span>compute_device<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3538</span>     <span class="ansi-green-fg">return</span> ret
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, node_def, g, inputs, output_types, control_inputs, input_types, original_op, op_def)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2014</span>         op_def <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_graph<span class="ansi-blue-fg">.</span>_get_op_def<span class="ansi-blue-fg">(</span>node_def<span class="ansi-blue-fg">.</span>op<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2015</span>       self._c_op = _create_c_op(self._graph, node_def, inputs,
-<span class="ansi-green-fg">-&gt; 2016</span><span class="ansi-red-fg">                                 control_input_ops, op_def)
-</span><span class="ansi-green-intense-fg ansi-bold">   2017</span>       name <span class="ansi-blue-fg">=</span> compat<span class="ansi-blue-fg">.</span>as_str<span class="ansi-blue-fg">(</span>node_def<span class="ansi-blue-fg">.</span>name<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2018</span>     <span class="ansi-red-fg"># pylint: enable=protected-access</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ansi-cyan-fg">_create_c_op</span><span class="ansi-blue-fg">(graph, node_def, inputs, control_inputs, op_def)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1843</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1844</span>   <span class="ansi-red-fg"># Add attrs</span>
-<span class="ansi-green-fg">-&gt; 1845</span><span class="ansi-red-fg">   </span><span class="ansi-green-fg">for</span> name<span class="ansi-blue-fg">,</span> attr_value <span class="ansi-green-fg">in</span> node_def<span class="ansi-blue-fg">.</span>attr<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1846</span>     serialized <span class="ansi-blue-fg">=</span> attr_value<span class="ansi-blue-fg">.</span>SerializeToString<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1847</span>     <span class="ansi-red-fg"># TODO(skyewm): this creates and deletes a new TF_Status for every attr.</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/_collections_abc.py</span> in <span class="ansi-cyan-fg">items</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    676</span>     <span class="ansi-green-fg">def</span> items<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    677</span>         <span class="ansi-blue-fg">&#34;D.items() -&gt; a set-like object providing a view on D&#39;s items&#34;</span>
-<span class="ansi-green-fg">--&gt; 678</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> ItemsView<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    679</span> 
-<span class="ansi-green-intense-fg ansi-bold">    680</span>     <span class="ansi-green-fg">def</span> values<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/envs/tf2/lib/python3.6/_collections_abc.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, mapping)</span>
-<span class="ansi-green-intense-fg ansi-bold">    696</span>     __slots__ <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#39;_mapping&#39;</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    697</span> 
-<span class="ansi-green-fg">--&gt; 698</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">def</span> __init__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> mapping<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    699</span>         self<span class="ansi-blue-fg">.</span>_mapping <span class="ansi-blue-fg">=</span> mapping
-<span class="ansi-green-intense-fg ansi-bold">    700</span> 
-
-<span class="ansi-red-fg">KeyboardInterrupt</span>: </pre>
-</div>
 </div>
 
 </div>
 
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">seq_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2100</span><span class="p">,</span> <span class="mi">2120</span><span class="p">):</span>
@@ -15900,8 +15582,8 @@ ________________________________________________________________________________
                 <span class="n">max_decoder_seq_length</span><span class="o">=</span><span class="n">max_decoder_seq_length</span><span class="p">,</span>
                 <span class="n">num_decoder_tokens</span><span class="o">=</span><span class="n">num_decoder_tokens</span><span class="p">,</span>
                 <span class="n">reverse_target_char_index</span><span class="o">=</span><span class="n">reverse_target_char_index</span><span class="p">,</span>
-                <span class="n">encoder_model</span><span class="o">=</span><span class="n">encoder_model</span><span class="p">,</span>
-                <span class="n">decoder_model</span><span class="o">=</span><span class="n">decoder_model</span><span class="p">)</span>
+                <span class="n">encoder_model</span><span class="o">=</span><span class="n">encoder_model_256</span><span class="p">,</span>
+                <span class="n">decoder_model</span><span class="o">=</span><span class="n">decoder_model_256</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;English:       &#39;</span><span class="p">,</span> <span class="n">input_texts</span><span class="p">[</span><span class="n">seq_index</span><span class="p">])</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dutch (true): &#39;</span><span class="p">,</span> <span class="n">target_texts</span><span class="p">[</span><span class="n">seq_index</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
@@ -15911,6 +15593,106 @@ ________________________________________________________________________________
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>-
+English:        i drank milk
+Dutch (true):  ik dronk melk
+Dutch (pred):  ik drink gelf
+-
+English:        i drink beer
+Dutch (true):  ik drink bier
+Dutch (pred):  ik drink bier
+-
+English:        i drink milk
+Dutch (true):  ik drink melk
+Dutch (pred):  ik drink gelf
+-
+English:        i drink wine
+Dutch (true):  ik drink wijn
+Dutch (pred):  ik drink gela
+-
+English:        i drive fast
+Dutch (true):  ik rij snel
+Dutch (pred):  ik heb mee verloren
+-
+English:        i eat cheese
+Dutch (true):  ik eet kaas
+Dutch (pred):  ik heb gelukkig gekocht
+-
+English:        i eat slowly
+Dutch (true):  ik eet langzaam
+Dutch (pred):  ik eet veel
+-
+English:        i feel dizzy
+Dutch (true):  ik voel me duizelig
+Dutch (pred):  ik voelde me ziek
+-
+English:        i feel happy
+Dutch (true):  ik voel me gelukkig
+Dutch (pred):  ik voelde me gelukkig
+-
+English:        i feel young
+Dutch (true):  ik voel me jong
+Dutch (pred):  ik voelde me gelukkig
+-
+English:        i felt alone
+Dutch (true):  ik voelde me alleen
+Dutch (pred):  ik voelde me alleen
+-
+English:        i felt happy
+Dutch (true):  ik voelde me gelukkig
+Dutch (pred):  ik voelde me gelukkig
+-
+English:        i go to work
+Dutch (true):  ik ga naar het werk
+Dutch (pred):  ik ga naar het work
+-
+English:        i had doubts
+Dutch (true):  ik had mijn twijfels
+Dutch (pred):  ik haat slaaten
+-
+English:        i had to try
+Dutch (true):  ik moest het proberen
+Dutch (pred):  ik moest gaan
+-
+English:        i hate beans
+Dutch (true):  ik haat bonen
+Dutch (pred):  ik haat saran
+-
+English:        i hate liars
+Dutch (true):  ik haat leugenaars
+Dutch (pred):  ik haat sarias
+-
+English:        i hate music
+Dutch (true):  ik haat muziek
+Dutch (pred):  ik haat kusten
+-
+English:        i hate sushi
+Dutch (true):  ik haat sushi
+Dutch (pred):  ik haat susten
+-
+English:        i have a car
+Dutch (true):  ik heb een auto
+Dutch (pred):  ik heb een hard
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15932,11 +15714,11 @@ ________________________________________________________________________________
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
-<span class="n">reconstructed_model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;seq2seq.h5&#39;</span><span class="p">)</span>
+<span class="c1">#reconstructed_model = keras.models.load_model(&#39;seq2seq256.h5&#39;)</span>
 </pre></div>
 
      </div>
@@ -15944,10 +15726,10 @@ ________________________________________________________________________________
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">input_sentence</span> <span class="o">=</span> <span class="s1">&#39;i like food&#39;</span>
@@ -15973,6 +15755,29 @@ ________________________________________________________________________________
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>source sentence is: i like food
+translated sentence is: hskm
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -15992,10 +15797,10 @@ ________________________________________________________________________________
 </ul>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.translate.bleu_score</span> <span class="kn">import</span> <span class="n">sentence_bleu</span>
@@ -16008,15 +15813,36 @@ ________________________________________________________________________________
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>0
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.translate.bleu_score</span> <span class="kn">import</span> <span class="n">sentence_bleu</span>
 <span class="n">decoded_sentences_test</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">seq_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">seq_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">seq_index</span><span class="p">)</span>
     <span class="c1"># Take one sequence (part of the training set)</span>
     <span class="c1"># for trying out decoding.</span>
@@ -16026,8 +15852,8 @@ ________________________________________________________________________________
                     <span class="n">max_decoder_seq_length</span><span class="o">=</span><span class="n">max_decoder_seq_length</span><span class="p">,</span>
                     <span class="n">num_decoder_tokens</span><span class="o">=</span><span class="n">num_decoder_tokens</span><span class="p">,</span>
                     <span class="n">reverse_target_char_index</span><span class="o">=</span><span class="n">reverse_target_char_index</span><span class="p">,</span>
-                    <span class="n">encoder_model</span><span class="o">=</span><span class="n">encoder_model</span><span class="p">,</span>
-                    <span class="n">decoder_model</span><span class="o">=</span><span class="n">decoder_model</span><span class="p">)</span>
+                    <span class="n">encoder_model</span><span class="o">=</span><span class="n">encoder_model_256</span><span class="p">,</span>
+                    <span class="n">decoder_model</span><span class="o">=</span><span class="n">decoder_model_256</span><span class="p">)</span>
     <span class="n">decoded_sentences_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">decoded_sentence</span><span class="p">)</span>
 </pre></div>
 
@@ -16036,66 +15862,130 @@ ________________________________________________________________________________
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="mi">2</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Flatten</span>
-
-<span class="n">vocab</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">shape_x</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="n">shape_h</span> <span class="o">=</span> <span class="mi">30</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab</span><span class="p">,</span><span class="n">shape_x</span><span class="p">,</span>  <span class="n">input_length</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="n">shape_h</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -16113,19 +16003,65 @@ ________________________________________________________________________________
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>0.0
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">target_texts_test</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">input_texts_test</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">target_texts_test</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">decoded_sentences_test</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>tom wished he had been more careful
+tom wilde dat hij voorzichtiger was geweest
+tom werkte de hele dacht gerendeld
+
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
